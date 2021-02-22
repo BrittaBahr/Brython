@@ -30,7 +30,7 @@ canvas = document["plotarea"]
 canvas_plot = canvas.getContext("2d")
 
 def set_system(x, y):
-    return (20 + x * 8, 420 - y * 20)
+    return ((20 + x * 8) * 100, 420 - y * 20)
 
 def draw_line(x1, y1, x2, y2, linethick = 3, color = "black"):
     canvas_plot.beginPath()
