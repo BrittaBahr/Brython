@@ -28,7 +28,7 @@ canvas = document["plotarea"]
 canvasPlot = canvas.getContext("2d")
 
 def setPoint(x, y):
-    return (20 + x * 8, 440 - (y) * 10)
+    return (20 + x * 8, 440 - (y) * 20)
 
 def drawLine(x1, y1, x2, y2, linethick = 3, color = "black"):
     canvasPlot.beginPath()
