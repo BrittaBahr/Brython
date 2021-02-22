@@ -16,11 +16,11 @@ import time
 
 datainput = []
 import csv
-with open("default.csv") as csvdatei:
+with open("datanf.csv") as csvdatei:
     csv_reader_object = csv.reader(csvdatei)
     for row in csv_reader_object:
-        datainput.append(float(row[0]))
-        document["console"] <= '%s, ' % str(row[0])[0:5]
+        datainput.append(float(row[1]))
+        graph(float(row[0]),float(row[1]))
 
 
 
@@ -49,20 +49,18 @@ def set_axis_color(ev):
     axis(color = document["set_axis_color"].value)
 
 dataset = []
-def graph(input):
+def graph(xvalue, input):
     data = input
     dataset.append(data)
     if len(dataset) == 1:
-        x, y = set_system(len(dataset), data)
+        x, y = set_system(xvalue, data)
         draw_line(x, y, x, y, linethick=3, color="blue")
     else:
-        x1, y1 = set_system(len(dataset)-1, dataset[-2])
-        x2, y2 = set_system(len(dataset), data)
+        x1, y1 = set_system(xvalue-1, dataset[-2])
+        x2, y2 = set_system(, data)
         draw_line(x1, y1, x2, y2, linethick=3, color="blue")
 
 axis(color = "black", linethick = 5)
-for i in range(0, len(datainput)-1):
-    graph(datainput[i])
 document['btn-axis'].bind('click', set_axis_color)
         </script>
 <table>
