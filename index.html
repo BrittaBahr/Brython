@@ -17,7 +17,8 @@ from browser import bind, window
 import time
 
 fake_qs = '?foo=%s' %time.time()
-document['console'].value = open('default.csv'+fake_qs).read()
+datainput = open('default.csv'+fake_qs).read()
+
 
 
 
