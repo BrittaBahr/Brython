@@ -22,6 +22,7 @@ with open("default.csv") as csvdatei:
     csv_reader_object = csv.reader(csvdatei)
     for row in csv_reader_object:
         test.append(row)
+        document["console"] <= '%s, ' % str(row)[0:5]
 
 
 document["console"] <= '%s, ' % str(test)[0:5]
