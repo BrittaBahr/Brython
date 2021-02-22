@@ -13,10 +13,19 @@ from browser import document
 from browser import timer
 from browser import bind, window
 
+
+import time
+
+
 import csv
 with open('default.csv') as csvdatei:
     csv_reader_object = csv.reader(csvdatei, delimiter=';')
     print(csv_reader_object)
+
+
+
+fake_qs = '?foo=%s' %time.time()
+data_str = open('default.csv'+fake_qs).read()
 
 
 
