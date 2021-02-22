@@ -29,8 +29,7 @@ canvasPlot = canvas.getContext("2d")
 
 def setPoint(x, y):
     diffX = x - 10.4
-
-    return ((diffX * 10 + 1) *  (840 / 11), 440 - ((y - 18) * 10) * 20)
+    return ((diffX * 10 + 1) *  (840 / 11) - 3, 440 - ((y - 18) * 10) * 20)
     # return (20 + x * 8, 420 - y * 20)
 
 def drawLine(x1, y1, x2, y2, linethick = 3, color = "black"):
