@@ -20,24 +20,6 @@ fake_qs = '?foo=%s' %time.time()
 document['console'].value = open('file.txt'+fake_qs).read()
 
 
-# getting the data
-load_btn = document["load_File"]
-save_btn = document["save_file"]
-datainput = []
-@bind(load_btn, "input")
-def file_read(ev):
-    def onload(event):
-        document['area'].value = event.target.result
-        datainput = event.target.result
-        save_btn.style.display = "inline"
-        save_btn.attrs["download"] = file.name
-    file = load_btn.files[0]
-    reader = window.FileReader.new()
-    reader.readAsText(file)
-    reader.bind("load", onload)
-
-
-
 
 
 canvas = document["plotarea"]
@@ -85,9 +67,6 @@ for i in range(0, len(datainput)-1):
     graph(datainput[i])
 document['btn-axis'].bind('click', set_axis_color)
         </script>
-        <!-- <br><input type="file" id="load_File">
-        <a id="save_file" href="#" download class="anchor-as-button">save</a>
-        <br><textarea id="area" rows="20" cols="60" autocomplete="off"></textarea> -->
 <table>
     <tr>
         <td rowspan="3"><textarea id="console" cols=30 rows=30></textarea></td>
