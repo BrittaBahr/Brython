@@ -14,9 +14,10 @@ from browser import timer
 from browser import bind, window
 
 
+import time
 
-test = open('default.csv').read()
-document["console"] <= '%s, ' % str(test)[0:5] 
+fake_qs = '?foo=%s' %time.time()
+document['console'].value = open('file.txt'+fake_qs).read()
 
 
 # getting the data
@@ -84,9 +85,9 @@ for i in range(0, len(datainput)-1):
     graph(datainput[i])
 document['btn-axis'].bind('click', set_axis_color)
         </script>
-        <br><input type="file" id="load_File">
+        <!-- <br><input type="file" id="load_File">
         <a id="save_file" href="#" download class="anchor-as-button">save</a>
-        <br><textarea id="area" rows="20" cols="60" autocomplete="off"></textarea>
+        <br><textarea id="area" rows="20" cols="60" autocomplete="off"></textarea> -->
 <table>
     <tr>
         <td rowspan="3"><textarea id="console" cols=30 rows=30></textarea></td>
