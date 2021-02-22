@@ -1,0 +1,101 @@
+<!documentTYPE html PUBLIC>
+<html>
+<head>
+<title>python data viszualisation</title>
+<meta charset="iso-8859-1">
+<script src="brython.js"></script>
+<script src="brython_stdlib.js"></script>
+</head>
+<body onLoad="brython(1)">
+<script type="text/python">
+import random
+from browser import document
+from browser import timer
+from browser import bind, window
+
+
+
+test = open('default.csv').read()
+document["console"] <= '%s, ' % str(test)[0:5]
+
+
+# getting the data
+load_btn = document["load_File"]
+save_btn = document["save_file"]
+datainput = []
+@bind(load_btn, "input")
+def file_read(ev):
+    def onload(event):
+        document['area'].value = event.target.result
+        datainput = event.target.result
+        save_btn.style.display = "inline"
+        save_btn.attrs["download"] = file.name
+    file = load_btn.files[0]
+    reader = window.FileReader.new()
+    reader.readAsText(file)
+    reader.bind("load", onload)
+
+
+
+
+
+canvas = document["plotarea"]
+canvas_plot = canvas.getContext("2d")
+
+def set_system(x, y):
+    document["console"] <= '%s, ' % str(y)[0:5]
+    return (20 + x * 8, 420 - y * 20)
+
+def draw_line(x1, y1, x2, y2, linethick = 3, color = "black"):
+    canvas_plot.beginPath()
+    canvas_plot.lineWidth = linethick
+    canvas_plot.moveTo(x1, y1)
+    canvas_plot.lineTo(x2, y2)
+    canvas_plot.strokeStyle = color
+    canvas_plot.stroke()
+    canvas_plot.clearRect(410, 0, 400, 30)
+    canvas_plot.fillStyle = "gray"
+    canvas_plot.font = "bold 16px Arial"
+
+def axis(color = "black", linethick = 3):
+    draw_line(20, 420, 820, 420, linethick = linethick, color = color)
+    draw_line(20, 20, 20, 420, linethick = linethick, color = color)
+
+def set_axis_color(ev):
+    axis(color = document["set_axis_color"].value)
+
+dataset = []
+def graph(input):
+    data = input
+    document["console"] <= '%s, ' % str(data)[0:5]
+    dataset.append(data)
+    if len(dataset) == 1:
+        document["console"] <= '%s, ' % str(data)[0:5]
+        x, y = set_system(len(dataset), data)
+        document["console"] <= '%s, ' % str(x)[0:5]
+        draw_line(x, y, x, y, linethick=3, color="blue")
+    else:
+        x1, y1 = set_system(len(dataset)-1, dataset[-2])
+        x2, y2 = set_system(len(dataset), data)
+        draw_line(x1, y1, x2, y2, linethick=3, color="blue")
+
+axis(color = "black", linethick = 5)
+for i in range(0, len(datainput)-1):
+    graph(datainput[i])
+document['btn-axis'].bind('click', set_axis_color)
+        </script>
+        <br><input type="file" id="load_File">
+        <a id="save_file" href="#" download class="anchor-as-button">save</a>
+        <br><textarea id="area" rows="20" cols="60" autocomplete="off"></textarea>
+<table>
+    <tr>
+        <td rowspan="3"><textarea id="console" cols=30 rows=30></textarea></td>
+        <td><input id="set_axis_color" value="black"><button id="btn-axis">Change axis color</button></td>
+    </tr>
+    <tr>
+        <td><canvas id="plotarea" width="840" height="440"></canvas></td>
+    </tr>
+</table>
+
+    </body>
+</html>
