@@ -18,7 +18,7 @@ datainput = []
 timeValues = []
 import csv
 with open("normalforce.csv") as csvdatei:
-    csv_reader_object = csv.reader(csvdatei, 'rb')
+    csv_reader_object = csv.reader(csvdatei)
     for row in csv_reader_object:
         document["console"] <= '%s, ' % str(row)[0:5]
        # datainput.append(float(row[1]))
