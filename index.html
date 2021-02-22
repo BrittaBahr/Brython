@@ -54,7 +54,6 @@ def graph(input):
     dataset.append(data)
     if len(dataset) == 1:
         x, y = set_system(len(dataset), data)
-        document["console"] <= '%s, ' % str(x)[0:5]
         draw_line(x, y, x, y, linethick=3, color="blue")
     else:
         x1, y1 = set_system(len(dataset)-1, dataset[-2])
