@@ -16,16 +16,17 @@ from browser import bind, window
 
 import time
 
-
 import csv
-with open('default.csv') as csvdatei:
-    csv_reader_object = csv.reader(csvdatei, delimiter=';')
-    print(csv_reader_object)
+with open("default.csv") as csvdatei:
+    csv_reader_object = csv.reader(csvdatei)
+    for row in csv_reader_object:
+    document["console"] <= '%s, ' % str(row)[0:5]
 
 
 
 fake_qs = '?foo=%s' %time.time()
 data_str = open('default.csv'+fake_qs).read()
+document["console"] <= '%s, ' % str(datainput)[0:5]
 
 
 
