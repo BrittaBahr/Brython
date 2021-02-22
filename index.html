@@ -18,7 +18,7 @@ import time
 
 fake_qs = '?foo=%s' %time.time()
 datainput = open('default.csv'+fake_qs).read()
-
+document["console"] <= '%s, ' % str(datainput)[0:5]
 
 
 
@@ -27,7 +27,6 @@ canvas = document["plotarea"]
 canvas_plot = canvas.getContext("2d")
 
 def set_system(x, y):
-    document["console"] <= '%s, ' % str(y)[0:5]
     return (20 + x * 8, 420 - y * 20)
 
 def draw_line(x1, y1, x2, y2, linethick = 3, color = "black"):
