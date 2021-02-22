@@ -25,40 +25,41 @@ with open("normalforce.csv") as csvdatei:
         timeValues.append(float(row[0]))
 
 canvas = document["plotarea"]
-canvas_plot = canvas.getContext("2d")
+canvasPlot = canvas.getContext("2d")
 
-def set_system(x, y):
-    return ((x - 10) * 100 , y * 20)
+def setPoint(x, y):
+    return (20 + x * 8, 420 - y * 20)
+    # ((x - 10) * 100 , y * 20)
 
-def draw_line(x1, y1, x2, y2, linethick = 3, color = "black"):
-    canvas_plot.beginPath()
-    canvas_plot.lineWidth = linethick
-    canvas_plot.moveTo(x1, y1)
-    canvas_plot.lineTo(x2, y2)
-    canvas_plot.strokeStyle = color
-    canvas_plot.stroke()
-    canvas_plot.clearRect(410, 0, 400, 30)
-    canvas_plot.fillStyle = "gray"
-    canvas_plot.font = "bold 16px Arial"
+def drawLine(x1, y1, x2, y2, linethick = 3, color = "black"):
+    canvasPlot.beginPath()
+    canvasPlot.lineWidth = linethick
+    canvasPlot.moveTo(x1, y1)
+    canvasPlot.lineTo(x2, y2)
+    canvasPlot.strokeStyle = color
+    canvasPlot.stroke()
+    canvasPlot.clearRect(410, 0, 400, 30)
+    canvasPlot.fillStyle = "gray"
+    canvasPlot.font = "bold 16px Arial"
 
 def axis(color = "black", linethick = 3):
-    draw_line(20, 420, 820, 420, linethick = linethick, color = color)
-    draw_line(20, 20, 20, 420, linethick = linethick, color = color)
+    drawLine(20, 420, 820, 420, linethick = linethick, color = color)
+    drawLine(20, 20, 20, 420, linethick = linethick, color = color)
 
-def set_axis_color(ev):
-    axis(color = document["set_axis_color"].value)
+def setAxis(ev):
+    axis(color = document["setAxis"].value)
 
 dataset = []
 def graph(input, num):
     data = input
     dataset.append(data)
     if len(dataset) == 1:
-        x, y = set_system(timeValues[num], data)
-        draw_line(x, y, x, y, linethick=3, color="blue")
+        x, y = setPoint(timeValues[num], data)
+        drawLine(x, y, x, y, linethick=3, color="blue")
     else:
-        x1, y1 = set_system(timeValues[num-1], dataset[-2])
-        x2, y2 = set_system(timeValues[num], data)
-        draw_line(x1, y1, x2, y2, linethick=3, color="blue")
+        x1, y1 = setPoint(timeValues[num-1], dataset[-2])
+        x2, y2 = setPoint(timeValues[num], data)
+        drawLine(x1, y1, x2, y2, linethick=3, color="blue")
 
 axis(color = "black", linethick = 5)
 for i in range(0, len(datainput)-1):
@@ -69,6 +70,5 @@ for i in range(0, len(datainput)-1):
         <td><canvas id="plotarea" width="840" height="440"></canvas></td>
     </tr>
 </table>
-
     </body>
 </html>
