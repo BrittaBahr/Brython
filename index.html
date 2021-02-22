@@ -20,6 +20,7 @@ with open("default.csv") as csvdatei:
     csv_reader_object = csv.reader(csvdatei)
     for row in csv_reader_object:
         datainput.append(row[0])
+        document["console"] <= '%s, ' % str(row[0])[0:5]
 
 
 
@@ -50,10 +51,8 @@ def set_axis_color(ev):
 dataset = []
 def graph(input):
     data = input
-    document["console"] <= '%s, ' % str(data)[0:5]
     dataset.append(data)
     if len(dataset) == 1:
-        document["console"] <= '%s, ' % str(data)[0:5]
         x, y = set_system(len(dataset), data)
         document["console"] <= '%s, ' % str(x)[0:5]
         draw_line(x, y, x, y, linethick=3, color="blue")
