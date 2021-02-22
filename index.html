@@ -18,19 +18,13 @@ import time
 
 test = []
 import csv
-with open("default.csv") as csvdatei:
+with open("datenNormalkraft.csv") as csvdatei:
     csv_reader_object = csv.reader(csvdatei)
     for row in csv_reader_object:
         test.append(row)
 
 
 document["console"] <= '%s, ' % str(test)[0:5]
-
-fake_qs = '?foo=%s' %time.time()
-data_str = open('default.csv'+fake_qs).read()
-document["console"] <= '%s, ' % str(datainput)[0:5]
-
-
 
 
 canvas = document["plotarea"]
